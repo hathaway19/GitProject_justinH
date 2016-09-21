@@ -16,11 +16,24 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 
 public class TextModActivity extends ActionBarActivity {
+
+
+
+
+    public Button reverse;
+
+    public EditText editsText;
+
+
 
     // array-list that contains our images to display
     private ArrayList<Bitmap> images;
@@ -33,6 +46,7 @@ public class TextModActivity extends ActionBarActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
 
         // perform superclass initialization; load the layout
         super.onCreate(savedInstanceState);
@@ -68,26 +82,37 @@ public class TextModActivity extends ActionBarActivity {
             // load the image; add to arraylist
             Bitmap img = BitmapFactory.decodeResource(getResources(), id);
             images.add(img);
+
+
+
+
         }
 
         // define a listener for the spinner
         spinner.setOnItemSelectedListener(new MySpinnerListener());
 
+        final EditText editText = (EditText) findViewById(R.id.editText);
+        String string = editText.getText().toString();
+        final Button reverseBtn = (Button) findViewById(R.id.button4);
+
+        reverseBtn.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+
+                int length = string.length();
+                String reversed= "";
+                for(int i= length-1; i>= 0; i--)
+                {
+                    reversed = reversed + string.charAt(i);
+                }
+                editText.setText(reversed);
+            }
+        });
     }
 
     /**
      * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
      */
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_text_mod, menu);
-        return true;
-    }
 
-    /**
-     * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
-     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -127,5 +152,9 @@ public class TextModActivity extends ActionBarActivity {
         public void onNothingSelected(AdapterView<?> parentView) {
             // your code here
         }
+
+
     }
+
+
 }
