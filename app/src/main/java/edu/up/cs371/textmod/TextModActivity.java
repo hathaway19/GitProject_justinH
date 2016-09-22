@@ -107,6 +107,7 @@ public class TextModActivity extends ActionBarActivity {
             }
         });
 
+
         //  Lower Case
         final Button lowerBtn = (Button) findViewById(R.id.button7);
         lowerBtn.setOnClickListener(new View.OnClickListener(){
