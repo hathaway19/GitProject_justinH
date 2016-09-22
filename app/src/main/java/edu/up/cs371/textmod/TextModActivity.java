@@ -127,12 +127,28 @@ public class TextModActivity extends ActionBarActivity {
                 editText.setText(finalString);
             }
         });
+        final EditText editText = (EditText) findViewById(R.id.editText);
+        String string = editText.getText().toString();
+        final Button reverseBtn = (Button) findViewById(R.id.button4);
+
+        reverseBtn.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+
+                int length = string.length();
+                String reversed= "";
+                for(int i= length-1; i>= 0; i--)
+                {
+                    reversed = reversed + string.charAt(i);
+                }
+                editText.setText(reversed);
+            }
+        });
     }
 
     /**
      * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
      */
-
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_text_mod, menu);
