@@ -16,11 +16,19 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class TextModActivity extends ActionBarActivity {
+
+    TextView editText;
 
     // array-list that contains our images to display
     private ArrayList<Bitmap> images;
@@ -73,12 +81,58 @@ public class TextModActivity extends ActionBarActivity {
         // define a listener for the spinner
         spinner.setOnItemSelectedListener(new MySpinnerListener());
 
+        //  initialize the editText
+        final EditText editText = (EditText) findViewById(R.id.editText);
+
+        //  initailize the Spinner
+        final Spinner Spin = (Spinner) findViewById(R.id.spinner);
+
+
+        //  Clear the text in editText when the Clear Button is clicked
+        final Button clearBtn = (Button) findViewById(R.id.button);
+        clearBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                final String finalString = "";
+                editText.setText(finalString);
+            }
+        });
+
+        //  Upper Case
+        final Button upperBtn = (Button) findViewById(R.id.button6);
+        upperBtn.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                String string = editText.getText().toString();
+                final String finalString = string.toUpperCase();
+                editText.setText(finalString);
+            }
+        });
+
+        //  Lower Case
+        final Button lowerBtn = (Button) findViewById(R.id.button7);
+        lowerBtn.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                String string = editText.getText().toString();
+                final String finalString = string.toLowerCase();
+                editText.setText(finalString);
+            }
+        });
+
+        //  Copy Name
+        final Button copyBtn = (Button) findViewById(R.id.button2);
+        copyBtn.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                String string = editText.getText().toString();
+                String spinString = Spin.getSelectedItem().toString();
+                final String finalString = string+spinString;
+                editText.setText(finalString);
+            }
+        });
     }
 
     /**
      * @see android.app.Activity#onCreateOptionsMenu(android.view.Menu)
      */
-    @Override
+
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_text_mod, menu);
