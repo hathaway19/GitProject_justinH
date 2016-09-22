@@ -15,6 +15,7 @@
         <item>@mipmap/goutham</item>
     </array>
 
+    
     <string-array name="spinner_names">
         <item>Sleeping Kitten</item>
         <item>Dr. Andrew Nuxoll</item>
