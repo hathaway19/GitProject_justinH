@@ -128,13 +128,13 @@ public class TextModActivity extends ActionBarActivity {
                 editText.setText(finalString);
             }
         });
-        final EditText editText = (EditText) findViewById(R.id.editText);
-        String string = editText.getText().toString();
+
+
         final Button reverseBtn = (Button) findViewById(R.id.button4);
 
         reverseBtn.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-
+                String string = editText.getText().toString();
                 int length = string.length();
                 String reversed= "";
                 for(int i= length-1; i>= 0; i--)
